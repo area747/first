@@ -1,5 +1,11 @@
-let server = require( "./server" );
-let router = require( "./router" );
-let handler = require( "./requestHandler" );
-var path = require( "path" );
-server.server( router, handler, path );
+// @flow
+
+const express = require( "express" );
+const server = express();
+server.listen( 7000, "localhost" );
+server.get( "/hi", function () {
+    console.log( "hi" );
+} );
+
+var a: number = 30;
+var b: string = "hi";
