@@ -3,11 +3,12 @@
         "build": "npx babel myProject/source -d myProject/dist"
     },
     "dependencies": {
-        "babel-preset-flow": "^6.23.0",
+        "@types/node": "^14.14.22",
         "express": "^4.17.1",
-        "flow-bin": "^0.143.1"
+        "ts-node": "^9.1.1"
     },
     "devDependencies": {
+        "@types/express": "^4.17.11",
         "babel-cli": "^6.26.0"
     }
 }

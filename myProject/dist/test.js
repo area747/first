@@ -1,9 +1,6 @@
-
-
+"use strict";
 var b = {
     a: 20,
     b: 30,
-    c: () => {
-        console.log("hi");
-    }
+    c: function () { console.log("hi"); }
 };
