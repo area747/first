@@ -4,3 +4,4 @@ var b = {
     b: 30,
     c: function () { console.log("hi"); }
 };
+//# sourceMappingURL=test.js.map
