@@ -1,5 +1,4 @@
 "use strict";
-//You need to import the default export from express instead of the namespace (which is an object with all named exports)
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -19,14 +18,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-var express = __importStar(require("express"));
-var apiRouter_1 = __importDefault(require("./apiRouter"));
-var htmlRouter_1 = __importDefault(require("./htmlRouter"));
-var app = express.default();
-app.use('/api', apiRouter_1.default);
-app.use('/', htmlRouter_1.default);
-app.listen(7000, "localhost");
-module.exports = express;
+var e = __importStar(require("express"));
+var apiRouter = e.Router();
+apiRouter.get('/', function (req, res) {
+    var url = req.originalUrl;
+    console.log(url);
+});
+apiRouter.get('/*', function (req, res) {
+    var url = req.originalUrl;
+    console.log(url, 'abc임');
+});
+module.exports = apiRouter;
