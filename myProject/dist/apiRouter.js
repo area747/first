@@ -20,13 +20,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 var e = __importStar(require("express"));
 var apiRouter = e.Router();
-apiRouter.get('/', function (req, res) {
-    var url = req.originalUrl;
-    console.log('api origin', url);
-});
-apiRouter.get('/:serviceCode', function (req, res) {
+apiRouter.get('/:serviceCode', function (req, res, next) {
     var params = req.params;
+    next(404);
     console.log(params.serviceCode);
+});
+apiRouter.get('/', function (req, res, next) {
+    var url = req.originalUrl;
+    next('route');
+    console.log('api origin', url);
 });
 module.exports = apiRouter;
 //# sourceMappingURL=apiRouter.js.map
