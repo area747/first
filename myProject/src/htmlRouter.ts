@@ -1,24 +1,18 @@
 import * as e from 'express';
 import * as fs from 'fs';
-const router = e.Router();
+const mvcRouter = e.Router();
 
-router.get( "/*", function ( req, res ) {
+mvcRouter.get( '/:serviceCode', function ( req, res, next ) {
 
-    console.log( 'path:', req.path );
-    console.log( 'url:', req.url );
-    console.log( 'base:', req.baseUrl );
-    console.log( 'original:', req.originalUrl );
+    let serviceCode = req.params.serviceCode;
 
-    let url = req.originalUrl;
-    if ( url === '/' ) {
-        url = 'main';
-    }
-    fs.readFile( 'myProject/view/' + url + '.html', { encoding: 'utf-8' }, function ( err, data ) {
+    fs.readFile( 'myProject/view/' + serviceCode + '.html', { encoding: 'utf-8' }, function ( err, data ) {
         res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' } );
         res.end( data );
-    } )
-} )
+        next();
+    } );
+} );
 
-export = router;
+export = mvcRouter;
 
 

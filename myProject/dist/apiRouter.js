@@ -22,10 +22,11 @@ var e = __importStar(require("express"));
 var apiRouter = e.Router();
 apiRouter.get('/', function (req, res) {
     var url = req.originalUrl;
-    console.log(url);
+    console.log('api origin', url);
 });
-apiRouter.get('/*', function (req, res) {
-    var url = req.originalUrl;
-    console.log(url, 'abc임');
+apiRouter.get('/:serviceCode', function (req, res) {
+    var params = req.params;
+    console.log(params.serviceCode);
 });
 module.exports = apiRouter;
+//# sourceMappingURL=apiRouter.js.map

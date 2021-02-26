@@ -4,13 +4,13 @@ const apiRouter = e.Router();
 apiRouter.get( '/', function ( req, res ) {
     let url = req.originalUrl;
 
-    console.log( url );
+    console.log( 'api origin', url );
 } )
 
-apiRouter.get( '/*', function ( req, res ) {
-    let url = req.originalUrl;
+apiRouter.get( '/:serviceCode', function ( req, res ) {
+    let params = req.params;
 
-    console.log( url ,'abc임');
+    console.log( params.serviceCode );
 } )
 
 export = apiRouter;

@@ -20,19 +20,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 var e = __importStar(require("express"));
 var fs = __importStar(require("fs"));
-var router = e.Router();
-router.get("/*", function (req, res) {
-    console.log('path:', req.path);
-    console.log('url:', req.url);
-    console.log('base:', req.baseUrl);
-    console.log('original:', req.originalUrl);
-    var url = req.originalUrl;
-    if (url === '/') {
-        url = 'main';
+var mvcRouter = e.Router();
+mvcRouter.get('/:serviceCode', function (req, res, next) {
+    var serviceCode = req.params.serviceCode;
+    if (true) {
+        next();
     }
-    fs.readFile('myProject/view/' + url + '.html', { encoding: 'utf-8' }, function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        res.end(data);
-    });
+    else {
+        fs.readFile('myProject/view/' + serviceCode + '.html', { encoding: 'utf-8' }, function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+            res.end(data);
+            next();
+        });
+    }
 });
-module.exports = router;
+module.exports = mvcRouter;
+//# sourceMappingURL=htmlRouter.js.map
