@@ -14,8 +14,10 @@ app.use(express_1.default.static('myProject/view'));
 app.use('/api', apiRouter_1.default);
 // view url 라우터
 app.use('/', htmlRouter_1.default);
-app.use(function (req, res, next) {
-    res.status(404).send('404 Not found');
+// 에러처리 핸들러
+app.use(function (err, req, res, next) {
+    console.log(err);
+    res.status(404).send('404 Not Found!!!');
 });
 app.listen(7000, 'localhost');
 //# sourceMappingURL=index.js.map

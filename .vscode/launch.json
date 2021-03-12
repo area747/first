@@ -11,8 +11,10 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\myProject\\dist\\index.js",
-            "outFiles": ["${workspaceFolder}/myProject/**/*.js"]
+            "program": "${workspaceFolder}\\myProject\\src\\index.ts",
+            "preLaunchTask": "typescript",
+            "outFiles": ["${workspaceFolder}/myProject/**/*.js"],
+            "protocol": "inspector"
         }
     ]
 }
