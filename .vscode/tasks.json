@@ -4,13 +4,16 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "typescript",
-            "tsconfig": "tsconfig.json",
-            "option": "watch",
+            "type": "shell",
+            "command": "tsc -w -p .",
             "problemMatcher": [
-                "$tsc-watch"
+                "$tsc"
             ],
-            "group": "build"
+            "group": {
+				"kind": "build",
+				"isDefault": true
+			},
+            "label": "TSC",
         }
     ]
 }
