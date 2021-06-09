@@ -2,12 +2,12 @@ import * as e from 'express';
 const apiRouter = e.Router();
 
 apiRouter.get( '/*', function ( req, res, next ) {
-    next('404');
+    next( '404' );
 
 } )
 
 apiRouter.get( '/:serviceCode', function ( req, res, next ) {
-    let params = req.params;
+    const params = req.params;
 
     console.log( params.serviceCode );
     next( new Error( 'woops' ) );
@@ -15,7 +15,7 @@ apiRouter.get( '/:serviceCode', function ( req, res, next ) {
 } );
 
 apiRouter.get( '/', function ( req, res, next ) {
-    let url = req.originalUrl;
+    const url = req.originalUrl;
 
     console.log( 'api origin', url );
 } );
