@@ -6,12 +6,7 @@ const mvcRouter = e.Router();
 
 mvcRouter.get( '/:serviceCode', function ( req, res, next ) {
 
-    const serviceCode = req.params.serviceCode || 'main';
-    console.log( '서비스코드 :', serviceCode );
-    if ( serviceCode === '404not' ) {
-        next( '404error!' );
-        return;
-    }
+    const serviceCode = req.params.serviceCode || 'index';
     fs.readFile( 'project/view/' + serviceCode + '.html', { encoding: 'utf-8' }, function ( err, data ) {
         res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' } );
         res.end( data );

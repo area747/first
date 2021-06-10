@@ -13,6 +13,7 @@
     "express-session": "^1.17.1",
     "mybatis-mapper": "^0.6.5",
     "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "should": "^13.2.3",
     "ts-node": "^9.1.1",
     "typescript": "^4.3.2"

@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import mysql from 'mysql2/promise';
 import mybatis, { Format, Params } from 'mybatis-mapper';
 import fs from 'fs';
 
@@ -7,28 +7,31 @@ const connection = mysql.createPool( {
     user: 'root',
     password: '1234',
     port: 3306,
-    database: 'sams'
+    database: 'user'
 } )
+const filePath = 'project/DB/mapper/'
 
-const ls = fs.readdirSync( 'project/DB/mapper' )
+const ls = fs.readdirSync( filePath )
 const list: string[] = [];
 const format: Format = { language: 'sql', indent: '  ' };
 ls.forEach( element => {
-    list.push( 'project/DB/mapper/' + element );
+    list.push( filePath + element );
 } );
 
 mybatis.createMapper( list );
 
-const excute = function ( namespace: string, sql: string, param: Params, callback: ( res: [] ) => void ): void {
-    const query: string = mybatis.getStatement( namespace, sql, param, format )
-    connection.getConnection( function ( err, con ) {
-        con.query( query, function ( err, res ) {
-            console.log( query );
-            console.log( err );
-            callback( res );
-        } )
-        con.release();
-    } )
-}
+const excute = async ( namespace: string, sql: string, param: Params):Promise<Array<any>> => {
+    const conn = await connection.getConnection();
+    try {
+        const query = mybatis.getStatement( namespace, sql, param, format )
+        const [row,etc] = await conn.query( query, param);
+        conn.release();
+        return JSON.parse(JSON.stringify(row));
+    } catch (error) {
+        console.log(error);
+        conn.release();
+        return [];
+    }
 
+}
 export = excute;

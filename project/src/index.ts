@@ -6,14 +6,14 @@ import apiRouter from './apiRouter';
 import mvcRouter from './htmlRouter';
 import excute from './DBcon';
 
-excute( 'mapper1', 'test', {}, function ( res ) {
-    for ( const i in res ) {
-        console.log( res[ i ] )
+(async function a ():Promise<void>{
+    var a = await excute( 'mapper1', 'test', {})
+    for(var i in a){
+        console.log(a[i]);
     }
-} );
+})();
 
 const app = express();
-// 정적 파일추가
 app.use( express.static( 'project/view' ) );
 
 app.use( session( {
