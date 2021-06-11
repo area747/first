@@ -7,7 +7,7 @@ const connection = mysql.createPool( {
     user: 'root',
     password: '1234',
     port: 3306,
-    database: 'user'
+    database: 'sams'
 } )
 const filePath = 'project/DB/mapper/'
 
@@ -20,15 +20,15 @@ ls.forEach( element => {
 
 mybatis.createMapper( list );
 
-const excute = async ( namespace: string, sql: string, param: Params):Promise<Array<any>> => {
+const excute = async ( namespace: string, sql: string, param: Params ): Promise<Array<any>> => {
     const conn = await connection.getConnection();
     try {
         const query = mybatis.getStatement( namespace, sql, param, format )
-        const [row,etc] = await conn.query( query, param);
+        const [ row, etc ] = await conn.query( query, param );
         conn.release();
-        return JSON.parse(JSON.stringify(row));
-    } catch (error) {
-        console.log(error);
+        return JSON.parse( JSON.stringify( row ) );
+    } catch ( error ) {
+        console.log( error );
         conn.release();
         return [];
     }

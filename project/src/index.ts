@@ -2,16 +2,15 @@
 
 import express, { NextFunction, Request, Response } from 'express';
 import session from 'express-session';
-import apiRouter from './apiRouter';
-import mvcRouter from './htmlRouter';
+import router from "./router/router";
 import excute from './DBcon';
 
-(async function a ():Promise<void>{
-    var a = await excute( 'mapper1', 'test', {})
-    for(var i in a){
-        console.log(a[i]);
+( async function a (): Promise<void> {
+    const a = await excute( 'mapper1', 'test', {} )
+    for ( const i in a ) {
+        console.log( a[ i ] );
     }
-})();
+} )();
 
 const app = express();
 app.use( express.static( 'project/view' ) );
@@ -23,10 +22,7 @@ app.use( session( {
 } ) )
 
 // api 라우터
-app.use( '/api', apiRouter );
-
-// view url 라우터
-app.use( '/', mvcRouter );
+app.use( router );
 
 
 // 에러처리 핸들러
